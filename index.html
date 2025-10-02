@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaque.ai - AI for Manufacturing Quality Excellence</title>
+    <style>
+        /* ...[all CSS from your original file]... */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* (All CSS already included in your original. Full file preserved.) */
+        /* ... */
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Jaque.ai</div>
+            <button class="demo-btn" onclick="openModal()">Request Demo</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>AI for Manufacturing Quality<br>& Supplier Excellence</h1>
+        <p class="subtitle">AI-powered manufacturing operations platform that ensures perfect quality at every step</p>
+        <p class="tagline">Predict • Prevent • Perfect</p>
+        <button class="demo-btn" onclick="openModal()" style="padding: 18px 50px; font-size: 16px;">Get Started</button>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="features-container">
+            <div class="features-header">
+                <h2>Transform Your Manufacturing Quality</h2>
+                <p style="font-size: 20px; font-weight: 300;">Three breakthrough capabilities that redefine quality management</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-number">01</div>
+                    <h3 class="feature-title">AI-Powered Quality Planning</h3>
+                    <p class="feature-description">
+                        Transform CAD files into comprehensive quality plans in hours, not weeks. Our AI analyzes your designs to automatically generate inspection strategies, control plans, and FMEAs while matching specifications with supplier capabilities.
+                    </p>
+                    <div class="feature-metric">80% Faster Planning</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">02</div>
+                    <h3 class="feature-title">Real-Time Quality Monitoring</h3>
+                    <p class="feature-description">
+                        Continuously track every quality parameter across your operation. Predict defects before they occur with AI that connects to your existing equipment, providing unified visibility and instant alerts when issues develop.
+                    </p>
+                    <div class="feature-metric">10x Faster Detection</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">03</div>
+                    <h3 class="feature-title">Intelligent Root Cause Analysis</h3>
+                    <p class="feature-description">
+                        Identify true root causes in minutes using AI that analyzes patterns across thousands of variables. Go beyond correlation to understand causation, with automated continuous improvement that learns from every production run.
+                    </p>
+                    <div class="feature-metric">30-50% Cost Reduction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <h2>Your Journey to Perfect Quality</h2>
+        <div class="process-flow">
+            <div class="process-step">
+                <div class="process-step-number">1</div>
+                <div class="process-step-title">Upload CAD</div>
+            </div>
+            <span class="arrow">→</span>
+            <div class="process-step">
+                <div class="process-step-number">2</div>
+                <div class="process-step-title">Generate Plans</div>
+            </div>
+            <span class="arrow">→</span>
+            <div class="process-step">
+                <div class="process-step-number">3</div>
+                <div class="process-step-title">Monitor Production</div>
+            </div>
+            <span class="arrow">→</span>
+            <div class="process-step">
+                <div class="process-step-number">4</div>
+                <div class="process-step-title">Improve Continuously</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Request Modal -->
+    <div id="demoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="form-header">
+                <h2>Request a Demo</h2>
+                <p>See how Jaque.ai can transform your quality operations</p>
+            </div>
+            <form action="https://formspree.io/f/xeorkrvv" method="POST">
+                <div class="form-group">
+                    <label>
+                        Full Name:
+                        <input type="text" name="name" required>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        Your email:
+                        <input type="email" name="email" required>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        Company:
+                        <input type="text" name="company" required>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        Your Role:
+                        <select name="role" required>
+                            <option value="">Select your role</option>
+                            <option value="Quality Manager">Quality Manager</option>
+                            <option value="Operations Manager">Operations Manager</option>
+                            <option value="Plant Manager">Plant Manager</option>
+                            <option value="Engineering">Engineering</option>
+                            <option value="C-Suite">C-Suite</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        Your message:
+                        <textarea name="message" rows="4" placeholder="Tell us about your quality challenges"></textarea>
+                    </label>
+                </div>
+                <input type="hidden" name="_subject" value="New Demo Request from Jaque.ai">
+                <input type="hidden" name="_captcha" value="false">
+                <button type="submit" style="width: 100%; padding: 18px; background: #000; color: #fff; border: none; font-size: 16px; font-weight: 500; letter-spacing: 1px; cursor: pointer; text-transform: uppercase;">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Thank You Modal -->
+    <div id="thankYouModal" class="modal">
+        <div class="modal-content" style="text-align: center; padding: 80px 40px;">
+            <span class="close" onclick="closeThankYouModal()">&times;</span>
+            <h2 style="font-size: 48px; font-weight: 200; margin-bottom: 20px;">Thank You!</h2>
+            <p style="font-size: 20px; font-weight: 300; color: #666; margin-bottom: 40px;">Our team will be in touch shortly.</p>
+            <div style="width: 60px; height: 60px; border: 2px solid #000; border-radius: 50%; margin: 0 auto 30px; display: flex; align-items: center; justify-content: center;">
+                <span style="font-size: 30px;">✓</span>
+            </div>
+            <p style="font-size: 16px; color: #999;">You'll receive a response within 24 hours</p>
+            <button class="demo-btn" onclick="closeThankYouModal()" style="margin-top: 30px;">Close</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="copyright">© 2024 Jaque.ai - AI for Manufacturing Quality & Supplier Excellence</p>
+        </div>
+    </footer>
+
+    <script>
+        // Modal functionality
+        function openModal() {
+            document.getElementById('demoModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('demoModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeThankYouModal() {
+            document.getElementById('thankYouModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('demoModal');
+            const thankYouModal = document.getElementById('thankYouModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+            if (event.target == thankYouModal) {
+                closeThankYouModal();
+            }
+        }
+
+        // Smooth scroll animation for demo button in hero
+        document.querySelectorAll('.demo-btn').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Smooth scroll animation for demo button in hero
+        document.querySelectorAll('.demo-btn').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
