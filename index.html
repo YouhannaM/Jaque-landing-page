@@ -5,14 +5,365 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jaque.ai - AI for Manufacturing Quality Excellence</title>
     <style>
-        /* ...[all CSS from your original file]... */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        /* (All CSS already included in your original. Full file preserved.) */
-        /* ... */
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: #000;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            padding: 20px 40px;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: -1px;
+        }
+
+        .demo-btn {
+            background: #fff;
+            color: #000;
+            padding: 12px 30px;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .demo-btn:hover {
+            background: #000;
+            color: #fff;
+            border: 1px solid #fff;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 40px 100px;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 72px;
+            font-weight: 200;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+        }
+
+        .hero .subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 50px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .tagline {
+            font-size: 18px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 60px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 40px;
+            background: #fff;
+            color: #000;
+        }
+
+        .features-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .features-header h2 {
+            font-size: 48px;
+            font-weight: 200;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 60px;
+        }
+
+        .feature-card {
+            padding: 40px;
+            border: 1px solid #000;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: #000;
+            color: #fff;
+            transform: translateY(-5px);
+        }
+
+        .feature-number {
+            font-size: 48px;
+            font-weight: 100;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        .feature-title {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .feature-description {
+            font-size: 16px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .feature-metric {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid currentColor;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 100px 40px;
+            background: #000;
+            color: #fff;
+            text-align: center;
+        }
+
+        .how-it-works h2 {
+            font-size: 48px;
+            font-weight: 200;
+            letter-spacing: -1px;
+            margin-bottom: 60px;
+        }
+
+        .process-flow {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .process-step {
+            flex: 1;
+            min-width: 200px;
+            padding: 20px;
+        }
+
+        .process-step-number {
+            width: 60px;
+            height: 60px;
+            border: 1px solid #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            font-weight: 200;
+        }
+
+        .process-step-title {
+            font-size: 18px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .arrow {
+            font-size: 30px;
+            opacity: 0.3;
+        }
+
+        /* Demo Form Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            position: relative;
+            background: #fff;
+            margin: 50px auto;
+            padding: 60px;
+            width: 90%;
+            max-width: 600px;
+            color: #000;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            position: absolute;
+            right: 30px;
+            top: 30px;
+            font-size: 30px;
+            cursor: pointer;
+            font-weight: 200;
+        }
+
+        .close:hover {
+            opacity: 0.6;
+        }
+
+        .form-header {
+            margin-bottom: 40px;
+        }
+
+        .form-header h2 {
+            font-size: 36px;
+            font-weight: 200;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+
+        .form-header p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #000;
+            font-size: 16px;
+            font-family: inherit;
+            background: #fff;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #000;
+            background: #f9f9f9;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: #000;
+            color: #fff;
+            border: none;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #fff;
+            color: #000;
+            border: 1px solid #000;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 40px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .copyright {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.5px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+            .hero .subtitle {
+                font-size: 18px;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .process-flow {
+                flex-direction: column;
+            }
+            .arrow {
+                transform: rotate(90deg);
+            }
+        }
     </style>
 </head>
 <body>
