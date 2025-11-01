@@ -1,5 +1,6 @@
 from pydantic_settings import BaseSettings
 from functools import lru_cache
+from typing import List, Union
 
 
 class Settings(BaseSettings):
@@ -11,7 +12,7 @@ class Settings(BaseSettings):
     DEBUG: bool = True
 
     # Database
-    DATABASE_URL: str = "postgresql://postgres:postgres@localhost:5432/jaque_db"
+    DATABASE_URL: str = "sqlite:///./jaque.db"
 
     # Redis
     REDIS_URL: str = "redis://localhost:6379/0"
@@ -21,8 +22,8 @@ class Settings(BaseSettings):
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
 
-    # CORS
-    ALLOWED_ORIGINS: list = ["http://localhost:3000", "http://localhost:8000", "*"]
+    # CORS - will accept either a comma-separated string or list
+    ALLOWED_ORIGINS: str = "*"
 
     # Email (for notifications)
     SMTP_HOST: str = "smtp.gmail.com"
@@ -34,6 +35,12 @@ class Settings(BaseSettings):
     # AI APIs
     OPENAI_API_KEY: str = ""
     ANTHROPIC_API_KEY: str = ""
+
+    def get_allowed_origins(self) -> List[str]:
+        """Parse ALLOWED_ORIGINS into a list"""
+        if self.ALLOWED_ORIGINS == "*":
+            return ["*"]
+        return [origin.strip() for origin in self.ALLOWED_ORIGINS.split(",")]
 
     class Config:
         env_file = ".env"
