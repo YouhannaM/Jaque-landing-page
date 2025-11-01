@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime
 from .core.config import get_settings
 from .database import engine, Base
-from .routers import demo
+from .routers import demo, cad
 from .schemas import HealthResponse
 
 settings = get_settings()
@@ -30,6 +30,7 @@ app.add_middleware(
 
 # Include routers
 app.include_router(demo.router)
+app.include_router(cad.router)
 
 
 @app.get("/", response_model=HealthResponse)
