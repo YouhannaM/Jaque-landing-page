@@ -41,6 +41,9 @@ htmlcov/
 postgres_data/
 redis_data/
 
+# Uploads (user-generated files)
+uploads/
+
 # OS
 .DS_Store
 Thumbs.db
