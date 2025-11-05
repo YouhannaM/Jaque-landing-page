@@ -1,0 +1,778 @@
+/**
+ * ManufactureFlow - Manufacturing Operations Platform
+ * Production Stylesheet
+ * Version: 1.0.0
+ */
+
+/* ===================================
+   Reset & Base Styles
+   =================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: #ffffff;
+    min-height: 100vh;
+    color: #000000;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===================================
+   Accessibility
+   =================================== */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #000000;
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* ===================================
+   Layout
+   =================================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ===================================
+   Header
+   =================================== */
+.header {
+    text-align: center;
+    margin-bottom: 60px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 40px;
+}
+
+.header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    font-weight: 300;
+    letter-spacing: -1px;
+}
+
+.header p {
+    font-size: 1.1em;
+    font-weight: 300;
+    color: #666666;
+}
+
+/* ===================================
+   Workflow Container
+   =================================== */
+.workflow-container {
+    background: white;
+    border: 1px solid #e0e0e0;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+/* ===================================
+   Workflow Navigation
+   =================================== */
+.workflow-nav {
+    display: flex;
+    background: #f8f8f8;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.nav-step {
+    flex: 1;
+    padding: 25px 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border-right: 1px solid #e0e0e0;
+    border: none;
+    font-family: inherit;
+    background: transparent;
+    width: auto;
+}
+
+.nav-step:last-child {
+    border-right: none;
+}
+
+.nav-step h3 {
+    font-size: 1em;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: inherit;
+}
+
+.nav-step p {
+    font-size: 0.85em;
+    color: #666666;
+    font-weight: 300;
+}
+
+.nav-step.active {
+    background: #000000;
+    color: white;
+}
+
+.nav-step.active p {
+    color: #cccccc;
+}
+
+.nav-step.completed {
+    background: #f0f0f0;
+}
+
+.nav-step:hover:not(.active) {
+    background: #eeeeee;
+}
+
+.nav-step:focus {
+    outline: 2px solid #000000;
+    outline-offset: -2px;
+}
+
+/* ===================================
+   Step Content
+   =================================== */
+.step-content {
+    padding: 50px;
+    min-height: 600px;
+    display: none;
+}
+
+.step-content.active {
+    display: block;
+}
+
+.step-content h2 {
+    font-size: 1.8em;
+    font-weight: 300;
+    margin-bottom: 15px;
+}
+
+.step-content p {
+    color: #666666;
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+/* ===================================
+   Upload Area
+   =================================== */
+.upload-area {
+    border: 1px solid #000000;
+    padding: 80px 20px;
+    text-align: center;
+    background: #ffffff;
+    margin-bottom: 40px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+
+.upload-area:hover {
+    background: #f8f8f8;
+}
+
+.upload-area:focus {
+    outline: 2px solid #000000;
+    outline-offset: 2px;
+}
+
+.upload-area.dragover {
+    background: #f0f0f0;
+    border-style: dashed;
+}
+
+.upload-icon {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.upload-area h3 {
+    font-size: 1.3em;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.upload-area p {
+    color: #666666;
+    margin-bottom: 30px;
+}
+
+/* ===================================
+   Buttons
+   =================================== */
+.btn {
+    background: #000000;
+    color: white;
+    border: 1px solid #000000;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    transition: all 0.2s ease;
+    margin: 10px 5px;
+}
+
+.btn:hover {
+    background: #333333;
+}
+
+.btn:focus {
+    outline: 2px solid #000000;
+    outline-offset: 2px;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-outline {
+    background: #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
+}
+
+.btn-outline:hover {
+    background: #f0f0f0;
+}
+
+.action-buttons {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* ===================================
+   Proposal Card
+   =================================== */
+.proposal-card {
+    background: #f8f8f8;
+    padding: 30px;
+    margin: 30px 0;
+    border-left: 3px solid #000000;
+}
+
+.proposal-section {
+    margin-bottom: 40px;
+}
+
+.proposal-section:last-child {
+    margin-bottom: 0;
+}
+
+.proposal-section h3 {
+    font-size: 1.2em;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+/* ===================================
+   Gauge Grid
+   =================================== */
+.gauge-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.gauge-item {
+    background: white;
+    padding: 25px;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+.gauge-item h4 {
+    font-size: 1em;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.gauge-item p {
+    font-size: 0.9em;
+    color: #666666;
+    margin-bottom: 5px;
+}
+
+/* ===================================
+   Process Flow
+   =================================== */
+.process-flow {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin: 40px 0;
+    overflow-x: auto;
+    padding: 20px 0;
+}
+
+.process-step {
+    background: white;
+    border: 1px solid #e0e0e0;
+    padding: 25px;
+    min-width: 180px;
+    text-align: center;
+    position: relative;
+}
+
+.process-step h4 {
+    font-size: 1em;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.process-step p {
+    font-size: 0.9em;
+    color: #666666;
+    margin-bottom: 5px;
+}
+
+.process-step small {
+    font-size: 0.8em;
+    color: #999999;
+}
+
+.process-step:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -45px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5em;
+    color: #000000;
+}
+
+/* ===================================
+   Metrics Grid
+   =================================== */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 40px 0;
+}
+
+.metric-card {
+    background: white;
+    padding: 30px;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+.metric-value {
+    font-size: 2.2em;
+    font-weight: 300;
+    margin-bottom: 8px;
+}
+
+.metric-card p {
+    font-size: 0.9em;
+    color: #666666;
+    font-weight: 400;
+}
+
+/* ===================================
+   Quality Dashboard
+   =================================== */
+.quality-dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.chart-container {
+    background: white;
+    padding: 30px;
+    border: 1px solid #e0e0e0;
+}
+
+.chart-container h3 {
+    font-size: 1.1em;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+/* ===================================
+   Alerts
+   =================================== */
+.alert {
+    padding: 20px;
+    margin: 20px 0;
+    border-left: 3px solid #000000;
+    background: #f8f8f8;
+}
+
+.alert strong {
+    font-weight: 500;
+}
+
+.alert-warning {
+    border-left-color: #666666;
+}
+
+.alert-success {
+    border-left-color: #000000;
+}
+
+.alert-danger {
+    border-left-color: #000000;
+}
+
+/* ===================================
+   Form Elements
+   =================================== */
+.input-group {
+    margin: 25px 0;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 400;
+    font-size: 0.9em;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    font-size: 14px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    transition: border-color 0.2s ease;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+    outline: none;
+    border-color: #000000;
+}
+
+.input-group input:invalid:not(:placeholder-shown),
+.input-group select:invalid:not(:placeholder-shown) {
+    border-color: #dc3545;
+}
+
+/* ===================================
+   File List
+   =================================== */
+.file-list {
+    background: #f8f8f8;
+    padding: 25px;
+    margin: 25px 0;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    background: white;
+    margin-bottom: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+/* ===================================
+   Progress Bar
+   =================================== */
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background: #e0e0e0;
+    overflow: hidden;
+    margin: 25px 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #000000;
+    transition: width 0.3s ease;
+}
+
+/* ===================================
+   Data Table
+   =================================== */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    background: white;
+    border: 1px solid #e0e0e0;
+}
+
+.data-table th {
+    background: #f8f8f8;
+    color: #000000;
+    padding: 15px;
+    text-align: left;
+    font-weight: 500;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.data-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 0.9em;
+}
+
+.data-table tbody tr:hover {
+    background: #f8f8f8;
+}
+
+/* ===================================
+   AI Insights
+   =================================== */
+.ai-insights {
+    background: #f0f0f0;
+    padding: 40px;
+    margin: 40px 0;
+    border-left: 3px solid #000000;
+}
+
+.ai-insights h3 {
+    margin-bottom: 25px;
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+.insight-item {
+    background: white;
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #e0e0e0;
+}
+
+.insight-item h4 {
+    font-size: 1em;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.insight-item p {
+    font-size: 0.9em;
+    color: #333333;
+    line-height: 1.5;
+}
+
+/* ===================================
+   Status Indicators
+   =================================== */
+.status-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border: 1px solid #000000;
+    margin-right: 8px;
+}
+
+.status-good {
+    background: #000000;
+}
+
+.status-warning {
+    background: #666666;
+}
+
+.status-critical {
+    background: #ffffff;
+    border: 2px solid #000000;
+}
+
+/* ===================================
+   Loading States
+   =================================== */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.loading-indicator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 30px;
+    border-radius: 4px;
+    text-align: center;
+    z-index: 1000;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #000000;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ===================================
+   Utility Classes
+   =================================== */
+.hidden {
+    display: none !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+ul {
+    margin-left: 20px;
+    margin-top: 15px;
+}
+
+li {
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    color: #333333;
+}
+
+/* ===================================
+   Responsive Design
+   =================================== */
+@media (max-width: 1024px) {
+    .quality-dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .process-flow {
+        flex-wrap: wrap;
+    }
+
+    .process-step:not(:last-child)::after {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .header h1 {
+        font-size: 2em;
+    }
+
+    .step-content {
+        padding: 30px 20px;
+    }
+
+    .workflow-nav {
+        flex-wrap: wrap;
+    }
+
+    .nav-step {
+        flex: 1 1 50%;
+        min-width: 150px;
+    }
+
+    .gauge-grid,
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .data-table {
+        font-size: 0.85em;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 1.5em;
+    }
+
+    .header p {
+        font-size: 1em;
+    }
+
+    .step-content h2 {
+        font-size: 1.4em;
+    }
+
+    .nav-step {
+        flex: 1 1 100%;
+    }
+
+    .btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+
+/* ===================================
+   Print Styles
+   =================================== */
+@media print {
+    .workflow-nav,
+    .btn,
+    .upload-area {
+        display: none;
+    }
+
+    .step-content {
+        display: block !important;
+        page-break-after: always;
+    }
+
+    .header {
+        border-bottom: 2px solid #000;
+    }
+}
