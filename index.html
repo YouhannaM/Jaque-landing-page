@@ -308,8 +308,8 @@
        CREDIBILITY LOGOS
     ============================================================ */
     @keyframes logoIn {
-      from { opacity: 0; transform: translateY(14px); }
-      to   { opacity: 0.62; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 0.65; transform: translateY(0); }
     }
     .credibility {
       padding: 0 40px 100px;
@@ -322,13 +322,8 @@
       font-weight: 400;
       letter-spacing: 2.5px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.45);
       margin-bottom: 36px;
-      opacity: 0;
-      transition: opacity 0.6s ease;
-    }
-    .credibility.in-view .credibility-label {
-      opacity: 1;
     }
     .logo-strip {
       display: flex;
@@ -340,25 +335,27 @@
       flex-wrap: wrap;
       row-gap: 28px;
     }
+    /* opacity:0.65 is the resting value — always visible even if animation is disabled */
     .logo-item {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 3px;
-      opacity: 0;
-      transform: translateY(14px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      opacity: 0.65;
+      transition: opacity 0.3s ease;
       cursor: default;
+      animation: logoIn 0.9s var(--ease-expo) both;
     }
-    .credibility.in-view .logo-item {
-      animation: logoIn 0.7s var(--ease-expo) forwards;
+    .logo-item:nth-child(1) { animation-delay: 0.10s; }
+    .logo-item:nth-child(2) { animation-delay: 0.20s; }
+    .logo-item:nth-child(3) { animation-delay: 0.30s; }
+    .logo-item:nth-child(4) { animation-delay: 0.40s; }
+    .logo-item:nth-child(5) { animation-delay: 0.50s; }
+    .logo-item:hover { opacity: 0.95; }
+    /* explicit reduced-motion override: skip animation, stay visible */
+    @media (prefers-reduced-motion: reduce) {
+      .logo-item { animation: none !important; opacity: 0.65 !important; }
     }
-    .credibility.in-view .logo-item:nth-child(1) { animation-delay: 0.05s; }
-    .credibility.in-view .logo-item:nth-child(2) { animation-delay: 0.13s; }
-    .credibility.in-view .logo-item:nth-child(3) { animation-delay: 0.21s; }
-    .credibility.in-view .logo-item:nth-child(4) { animation-delay: 0.29s; }
-    .credibility.in-view .logo-item:nth-child(5) { animation-delay: 0.37s; }
-    .logo-item:hover { opacity: 0.9 !important; }
     .logo-name {
       font-size: 14px;
       font-weight: 500;
@@ -1626,20 +1623,6 @@
       }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
       els.forEach(el => obs.observe(el));
-
-      // Credibility section: add .in-view when the section enters the viewport
-      const credibility = document.querySelector('.credibility');
-      if (credibility) {
-        const credObs = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('in-view');
-              credObs.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.15 });
-        credObs.observe(credibility);
-      }
     }
 
     /* ----------------------------------------------------------
