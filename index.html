@@ -305,6 +305,77 @@
     }
 
     /* ============================================================
+       CREDIBILITY LOGOS
+    ============================================================ */
+    @keyframes logoIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 0.65; transform: translateY(0); }
+    }
+    .credibility {
+      padding: 0 40px 100px;
+      background: var(--black);
+      text-align: center;
+      position: relative;
+    }
+    .credibility-label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 36px;
+    }
+    .logo-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 52px;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      flex-wrap: wrap;
+      row-gap: 28px;
+    }
+    /* opacity:0.65 is the resting value — always visible even if animation is disabled */
+    .logo-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      opacity: 0.65;
+      transition: opacity 0.3s ease;
+      cursor: default;
+      animation: logoIn 0.9s var(--ease-expo) both;
+    }
+    .logo-item:nth-child(1) { animation-delay: 0.10s; }
+    .logo-item:nth-child(2) { animation-delay: 0.20s; }
+    .logo-item:nth-child(3) { animation-delay: 0.30s; }
+    .logo-item:nth-child(4) { animation-delay: 0.40s; }
+    .logo-item:nth-child(5) { animation-delay: 0.50s; }
+    .logo-item:hover { opacity: 0.95; }
+    /* explicit reduced-motion override: skip animation, stay visible */
+    @media (prefers-reduced-motion: reduce) {
+      .logo-item { animation: none !important; opacity: 0.65 !important; }
+    }
+    .logo-name {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      color: var(--white);
+      text-transform: uppercase;
+      white-space: nowrap;
+      line-height: 1;
+    }
+    .logo-sub {
+      font-size: 7.5px;
+      font-weight: 400;
+      letter-spacing: 1.8px;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+      white-space: nowrap;
+      line-height: 1;
+    }
+
+    /* ============================================================
        SHOWCASE SECTION
     ============================================================ */
     .showcase {
@@ -1015,6 +1086,7 @@
        RESPONSIVE
     ============================================================ */
     @media (max-width: 1024px) {
+      .logo-strip { gap: 40px; }
       .showcase-grid { grid-template-columns: repeat(2, 1fr); }
       .cap-grid { grid-template-columns: repeat(2, 1fr); }
       .metrics-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1047,6 +1119,8 @@
       .t-tags { justify-content: flex-start !important; }
       .t-dot { width: 40px; height: 40px; font-size: 13px; }
 
+      .credibility { padding: 0 24px 64px; }
+      .logo-strip { gap: 32px; }
       .showcase, .capabilities, .process, .metrics, .cta-section { padding: 80px 24px; }
       .hero { padding-left: 24px; padding-right: 24px; }
       .hero-title { letter-spacing: -2px; }
@@ -1125,6 +1199,39 @@
         <span class="tagline-sep"></span>
         <span>Optimize</span>
       </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CREDIBILITY LOGOS
+  ============================================================ -->
+  <section class="credibility" aria-label="Team backgrounds">
+    <p class="credibility-label">Our team comes from</p>
+    <div class="logo-strip">
+
+      <div class="logo-item" title="Cornell University">
+        <span class="logo-name">Cornell</span>
+        <span class="logo-sub">University</span>
+      </div>
+
+      <div class="logo-item" title="University of Toronto">
+        <span class="logo-name">U of T</span>
+        <span class="logo-sub">University of Toronto</span>
+      </div>
+
+      <div class="logo-item" title="Tesla">
+        <span class="logo-name">Tesla</span>
+      </div>
+
+      <div class="logo-item" title="Anthropic">
+        <span class="logo-name">Anthropic</span>
+      </div>
+
+      <div class="logo-item" title="Dell Technologies">
+        <span class="logo-name">Dell</span>
+        <span class="logo-sub">Technologies</span>
+      </div>
+
     </div>
   </section>
 
