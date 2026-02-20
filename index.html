@@ -374,6 +374,14 @@
       white-space: nowrap;
       line-height: 1;
     }
+    .logo-mark {
+      display: block;
+      height: 30px;
+      width: auto;
+      margin-bottom: 6px;
+      color: var(--white);
+      flex-shrink: 0;
+    }
 
     /* ============================================================
        SHOWCASE SECTION
@@ -1121,6 +1129,7 @@
 
       .credibility { padding: 0 24px 64px; }
       .logo-strip { gap: 32px; }
+      .logo-mark { height: 24px; margin-bottom: 4px; }
       .showcase, .capabilities, .process, .metrics, .cta-section { padding: 80px 24px; }
       .hero { padding-left: 24px; padding-right: 24px; }
       .hero-title { letter-spacing: -2px; }
@@ -1209,25 +1218,53 @@
     <p class="credibility-label">Our team comes from</p>
     <div class="logo-strip">
 
+      <!-- Cornell University — academic shield with book -->
       <div class="logo-item" title="Cornell University">
+        <svg class="logo-mark" viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M100 230c-50-30-84-68-84-120V40l84-28 84 28v70c0 52-34 90-84 120z"/>
+          <path d="M70 90v50l30-15 30 15V90"/>
+          <line x1="100" y1="90" x2="100" y2="125"/>
+        </svg>
         <span class="logo-name">Cornell</span>
         <span class="logo-sub">University</span>
       </div>
 
+      <!-- University of Toronto — shield with crown -->
       <div class="logo-item" title="University of Toronto">
+        <svg class="logo-mark" viewBox="0 0 200 260" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M60 50l10-30 15 20 15-20 15 20 15-20 10 30"/>
+          <line x1="60" y1="50" x2="140" y2="50"/>
+          <path d="M50 60h100v90c0 50-50 80-50 80s-50-30-50-80V60z"/>
+          <line x1="100" y1="80" x2="100" y2="180"/>
+          <line x1="75" y1="110" x2="125" y2="110"/>
+        </svg>
         <span class="logo-name">U of T</span>
         <span class="logo-sub">University of Toronto</span>
       </div>
 
+      <!-- Tesla — iconic T mark -->
       <div class="logo-item" title="Tesla">
+        <svg class="logo-mark" viewBox="0 0 278 300" fill="currentColor" aria-hidden="true">
+          <path d="M139 274.4L108.7 46.8c22.6-5.4 61.1-5.4 83.7 0L139 274.4z"/>
+          <path d="M139 25.6c46.3 0 89.5 5.4 120.2 14.4 3.8-8.8 7-17.8 9.4-27C230.3 4.2 186.3 0 139 0S47.7 4.2 9.4 13c2.4 9.2 5.6 18.2 9.4 27C49.5 31 92.7 25.6 139 25.6z"/>
+        </svg>
         <span class="logo-name">Tesla</span>
       </div>
 
+      <!-- Anthropic — stylized A -->
       <div class="logo-item" title="Anthropic">
+        <svg class="logo-mark" viewBox="0 0 200 200" fill="currentColor" aria-hidden="true">
+          <path d="M100 10L180 190H147l-17.5-50h-59L53 190H20L100 10zm-22 110h44L100 58l-22 62z"/>
+        </svg>
         <span class="logo-name">Anthropic</span>
       </div>
 
+      <!-- Dell Technologies — circle with D -->
       <div class="logo-item" title="Dell Technologies">
+        <svg class="logo-mark" viewBox="0 0 200 200" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M100 0C44.8 0 0 44.8 0 100s44.8 100 100 100 100-44.8 100-100S155.2 0 100 0zm0 16c46.4 0 84 37.6 84 84s-37.6 84-84 84-84-37.6-84-84 37.6-84 84-84z"/>
+          <path d="M72 56h24c26.5 0 48 19.7 48 44s-21.5 44-48 44H72V56zm20 18v52h6c16.6 0 26-11.5 26-26s-9.4-26-26-26h-6z"/>
+        </svg>
         <span class="logo-name">Dell</span>
         <span class="logo-sub">Technologies</span>
       </div>
