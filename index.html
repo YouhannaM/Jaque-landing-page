@@ -307,6 +307,10 @@
     /* ============================================================
        CREDIBILITY LOGOS
     ============================================================ */
+    @keyframes logoIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 0.62; transform: translateY(0); }
+    }
     .credibility {
       padding: 0 40px 100px;
       background: var(--black);
@@ -318,8 +322,13 @@
       font-weight: 400;
       letter-spacing: 2.5px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.28);
+      color: rgba(255,255,255,0.35);
       margin-bottom: 36px;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .credibility.in-view .credibility-label {
+      opacity: 1;
     }
     .logo-strip {
       display: flex;
@@ -336,11 +345,20 @@
       flex-direction: column;
       align-items: center;
       gap: 3px;
-      opacity: 0.38;
-      transition: opacity 0.3s ease;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
       cursor: default;
     }
-    .logo-item:hover { opacity: 0.8; }
+    .credibility.in-view .logo-item {
+      animation: logoIn 0.7s var(--ease-expo) forwards;
+    }
+    .credibility.in-view .logo-item:nth-child(1) { animation-delay: 0.05s; }
+    .credibility.in-view .logo-item:nth-child(2) { animation-delay: 0.13s; }
+    .credibility.in-view .logo-item:nth-child(3) { animation-delay: 0.21s; }
+    .credibility.in-view .logo-item:nth-child(4) { animation-delay: 0.29s; }
+    .credibility.in-view .logo-item:nth-child(5) { animation-delay: 0.37s; }
+    .logo-item:hover { opacity: 0.9 !important; }
     .logo-name {
       font-size: 14px;
       font-weight: 500;
@@ -1191,28 +1209,28 @@
        CREDIBILITY LOGOS
   ============================================================ -->
   <section class="credibility" aria-label="Team backgrounds">
-    <p class="credibility-label reveal">Our team comes from</p>
+    <p class="credibility-label">Our team comes from</p>
     <div class="logo-strip">
 
-      <div class="logo-item reveal" style="transition-delay:60ms" title="Cornell University">
+      <div class="logo-item" title="Cornell University">
         <span class="logo-name">Cornell</span>
         <span class="logo-sub">University</span>
       </div>
 
-      <div class="logo-item reveal" style="transition-delay:120ms" title="University of Toronto">
+      <div class="logo-item" title="University of Toronto">
         <span class="logo-name">U of T</span>
         <span class="logo-sub">University of Toronto</span>
       </div>
 
-      <div class="logo-item reveal" style="transition-delay:180ms" title="Tesla">
+      <div class="logo-item" title="Tesla">
         <span class="logo-name">Tesla</span>
       </div>
 
-      <div class="logo-item reveal" style="transition-delay:240ms" title="Anthropic">
+      <div class="logo-item" title="Anthropic">
         <span class="logo-name">Anthropic</span>
       </div>
 
-      <div class="logo-item reveal" style="transition-delay:300ms" title="Dell Technologies">
+      <div class="logo-item" title="Dell Technologies">
         <span class="logo-name">Dell</span>
         <span class="logo-sub">Technologies</span>
       </div>
@@ -1608,6 +1626,20 @@
       }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
       els.forEach(el => obs.observe(el));
+
+      // Credibility section: add .in-view when the section enters the viewport
+      const credibility = document.querySelector('.credibility');
+      if (credibility) {
+        const credObs = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in-view');
+              credObs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        credObs.observe(credibility);
+      }
     }
 
     /* ----------------------------------------------------------
