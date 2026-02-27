@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jaque.ai Manufacturing Operations Platform - AI-powered quality control, production monitoring, and analytics">
+    <meta name="keywords" content="manufacturing, quality control, CAD analysis, production monitoring, AI analytics">
+    <meta name="author" content="Jaque.ai">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ManufactureFlow - Operations Platform">
+    <meta property="og:description" content="AI-powered manufacturing operations platform for quality control and production monitoring">
+    <meta property="og:site_name" content="Jaque.ai">
+
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
+
+    <title>ManufactureFlow - Operations Platform | Jaque.ai</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <main id="main-content">
+        <div class="container">
+            <header class="header">
+                <h1>Jaque.ai</h1>
+                <p>Manufacturing Operations Platform</p>
+            </header>
+
+            <div class="workflow-container">
+                <nav class="workflow-nav" role="navigation" aria-label="Workflow steps">
+                    <button class="nav-step active" data-step="1" aria-current="step" aria-label="Step 1: CAD Upload">
+                        <h3>CAD Upload</h3>
+                        <p>Upload Design Files</p>
+                    </button>
+                    <button class="nav-step" data-step="2" aria-label="Step 2: Quality Plan">
+                        <h3>Quality Plan</h3>
+                        <p>Control & Inspection</p>
+                    </button>
+                    <button class="nav-step" data-step="3" aria-label="Step 3: Tooling & Process">
+                        <h3>Tooling & Process</h3>
+                        <p>Manufacturing Setup</p>
+                    </button>
+                    <button class="nav-step" data-step="4" aria-label="Step 4: Production">
+                        <h3>Production</h3>
+                        <p>Live Monitoring</p>
+                    </button>
+                    <button class="nav-step" data-step="5" aria-label="Step 5: Quality Analytics">
+                        <h3>Quality Analytics</h3>
+                        <p>Insights & Analysis</p>
+                    </button>
+                </nav>
+
+                <!-- Step 1: CAD Upload -->
+                <section id="step1" class="step-content active" aria-labelledby="step1-title">
+                    <h2 id="step1-title">Upload CAD Files</h2>
+                    <p>Upload your design files to generate an automated quality control plan and manufacturing recommendations.</p>
+
+                    <div class="upload-area" id="uploadArea" role="button" tabindex="0" aria-label="Upload CAD files">
+                        <div class="upload-icon" aria-hidden="true">⬆</div>
+                        <h3>Drop CAD Files Here</h3>
+                        <p>Supports .dwg, .step, .iges, .stl, .3dm, .x_t</p>
+                        <button class="btn" type="button">Select Files</button>
+                    </div>
+
+                    <div id="fileList" class="file-list hidden">
+                        <h3>Uploaded Files</h3>
+                        <div id="files" role="list"></div>
+                    </div>
+
+                    <form id="cadForm" class="cad-form">
+                        <div class="input-group">
+                            <label for="partName">Part Name</label>
+                            <input type="text" id="partName" name="partName" placeholder="Enter part designation" required aria-required="true">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="materialType">Material</label>
+                            <select id="materialType" name="materialType" required aria-required="true">
+                                <option value="">Select material</option>
+                                <option value="aluminum-6061">Aluminum 6061-T6</option>
+                                <option value="steel-1018">Steel 1018</option>
+                                <option value="stainless-316">Stainless Steel 316</option>
+                                <option value="titanium-ti6al4v">Titanium Ti-6Al-4V</option>
+                                <option value="brass-c360">Brass C360</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="volume">Annual Volume</label>
+                            <input type="number" id="volume" name="volume" placeholder="Expected production volume" min="1" required aria-required="true">
+                        </div>
+
+                        <button class="btn" type="button" onclick="window.manufacturingApp.analyzeCAD()">Analyze & Generate Proposal</button>
+                    </form>
+                </section>
+
+                <!-- Step 2: Quality Plan -->
+                <section id="step2" class="step-content" aria-labelledby="step2-title">
+                    <h2 id="step2-title">Quality Control Plan</h2>
+                    <p>AI-generated quality strategy based on your CAD analysis and manufacturing requirements.</p>
+
+                    <div class="proposal-card">
+                        <div class="proposal-section">
+                            <h3>Critical Dimensions</h3>
+                            <div class="gauge-grid">
+                                <div class="gauge-item">
+                                    <h4>Bore Diameter</h4>
+                                    <p>Ø25.000 ±0.005mm</p>
+                                    <p><strong>Method:</strong> Go/No-Go Gauge</p>
+                                </div>
+                                <div class="gauge-item">
+                                    <h4>Overall Length</h4>
+                                    <p>150.00 ±0.1mm</p>
+                                    <p><strong>Method:</strong> Digital Caliper</p>
+                                </div>
+                                <div class="gauge-item">
+                                    <h4>Surface Finish</h4>
+                                    <p>Ra 1.6μm</p>
+                                    <p><strong>Method:</strong> Profilometer</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="proposal-section">
+                            <h3>Control Plan</h3>
+                            <div class="table-responsive">
+                                <table class="data-table">
+                                    <caption class="sr-only">Quality Control Plan Details</caption>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Feature</th>
+                                            <th scope="col">Specification</th>
+                                            <th scope="col">Method</th>
+                                            <th scope="col">Frequency</th>
+                                            <th scope="col">Sample Size</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Bore Diameter</td>
+                                            <td>Ø25.000 ±0.005</td>
+                                            <td>CMM</td>
+                                            <td>Every 10 parts</td>
+                                            <td>3 points</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Overall Length</td>
+                                            <td>150.00 ±0.1</td>
+                                            <td>Caliper</td>
+                                            <td>Every 5 parts</td>
+                                            <td>1 measurement</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Surface Finish</td>
+                                            <td>Ra ≤ 1.6μm</td>
+                                            <td>Profilometer</td>
+                                            <td>First/Last piece</td>
+                                            <td>3 locations</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="proposal-section">
+                            <h3>Quality Strategy</h3>
+                            <div class="alert" role="alert">
+                                <strong>Recommended:</strong> Statistical Process Control with real-time monitoring
+                            </div>
+                            <ul>
+                                <li>SPC charts for critical dimensions</li>
+                                <li>Automated data collection</li>
+                                <li>Real-time alerts for out-of-spec conditions</li>
+                                <li>Monthly capability studies</li>
+                            </ul>
+                        </div>
+
+                        <div class="proposal-section">
+                            <div class="metric-card">
+                                <div class="metric-value">$455K</div>
+                                <p>Total Investment</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-outline" type="button" onclick="window.manufacturingApp.requestRevisions()">Request Changes</button>
+                        <button class="btn" type="button" onclick="window.manufacturingApp.approveQualityPlan()">Approve Plan</button>
+                    </div>
+                </section>
+
+                <!-- Step 3: Tooling & Process -->
+                <section id="step3" class="step-content" aria-labelledby="step3-title">
+                    <h2 id="step3-title">Manufacturing Setup</h2>
+                    <p>Recommended tooling, equipment, and process flow based on your approved quality requirements.</p>
+
+                    <div class="proposal-card">
+                        <div class="proposal-section">
+                            <h3>Equipment Recommendations</h3>
+                            <div class="gauge-grid">
+                                <div class="gauge-item">
+                                    <h4>Primary Operation</h4>
+                                    <p><strong>CNC Lathe</strong></p>
+                                    <p>Haas ST-30</p>
+                                    <p>$185,000</p>
+                                </div>
+                                <div class="gauge-item">
+                                    <h4>Secondary Operation</h4>
+                                    <p><strong>CNC Mill</strong></p>
+                                    <p>Haas VF-3</p>
+                                    <p>$145,000</p>
+                                </div>
+                                <div class="gauge-item">
+                                    <h4>Quality Control</h4>
+                                    <p><strong>CMM</strong></p>
+                                    <p>Zeiss Contura G2</p>
+                                    <p>$125,000</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="proposal-section">
+                            <h3>Process Flow</h3>
+                            <div class="process-flow">
+                                <div class="process-step">
+                                    <h4>Material Prep</h4>
+                                    <p>Bar Stock</p>
+                                    <small>5 min</small>
+                                </div>
+                                <div class="process-step">
+                                    <h4>Turning</h4>
+                                    <p>CNC Lathe</p>
+                                    <small>12 min</small>
+                                </div>
+                                <div class="process-step">
+                                    <h4>Milling</h4>
+                                    <p>CNC Mill</p>
+                                    <small>8 min</small>
+                                </div>
+                                <div class="process-step">
+                                    <h4>Inspection</h4>
+                                    <p>CMM</p>
+                                    <small>3 min</small>
+                                </div>
+                                <div class="process-step">
+                                    <h4>Package</h4>
+                                    <p>Final</p>
+                                    <small>2 min</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">30</div>
+                                <p>Cycle Time (min)</p>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">28</div>
+                                <p>Takt Time (min)</p>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">95%</div>
+                                <p>Expected OEE</p>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">$455K</div>
+                                <p>Total Investment</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-outline" type="button" onclick="window.manufacturingApp.requestProcessRevisions()">Request Changes</button>
+                        <button class="btn" type="button" onclick="window.manufacturingApp.approveProcess()">Start Production</button>
+                    </div>
+                </section>
+
+                <!-- Step 4: Production Monitoring -->
+                <section id="step4" class="step-content" aria-labelledby="step4-title">
+                    <h2 id="step4-title">Production Monitoring</h2>
+                    <p>Live data integration with manufacturing equipment and quality management systems.</p>
+
+                    <div class="alert" role="status">
+                        <strong>PLC Connected:</strong> Real-time data from Haas ST-30 and VF-3
+                    </div>
+
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-value" id="oeeValue">87%</div>
+                            <p>Current OEE</p>
+                            <span class="status-indicator status-warning" aria-label="Warning status"></span>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">142</div>
+                            <p>Parts Today</p>
+                            <span class="status-indicator status-good" aria-label="Good status"></span>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">23</div>
+                            <p>Hours to Maintenance</p>
+                            <span class="status-indicator status-warning" aria-label="Warning status"></span>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">1.45</div>
+                            <p>Current Cpk</p>
+                            <span class="status-indicator status-good" aria-label="Good status"></span>
+                        </div>
+                    </div>
+
+                    <div class="proposal-section">
+                        <h3>Predictive Maintenance</h3>
+                        <div class="alert alert-warning" role="alert">
+                            <strong>Spindle Vibration:</strong> ST-30 showing elevated levels. Inspect within 24 hours.
+                        </div>
+                        <div class="alert alert-success" role="status">
+                            <strong>Tool Life:</strong> Operating within expected parameters.
+                        </div>
+                    </div>
+
+                    <div class="proposal-section">
+                        <h3>Quality Data Entry</h3>
+                        <form id="qualityDataForm" class="quality-form">
+                            <div class="input-group">
+                                <label for="operator">Operator</label>
+                                <select id="operator" name="operator" required aria-required="true">
+                                    <option value="">Select operator</option>
+                                    <option value="john-smith">John Smith</option>
+                                    <option value="maria-garcia">Maria Garcia</option>
+                                    <option value="david-chen">David Chen</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="serialNumber">Serial Number</label>
+                                <input type="text" id="serialNumber" name="serialNumber" placeholder="Part serial number" required aria-required="true">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="boreDiameter">Bore Diameter (mm)</label>
+                                <input type="number" step="0.001" id="boreDiameter" name="boreDiameter" placeholder="25.000" required aria-required="true">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="overallLength">Overall Length (mm)</label>
+                                <input type="number" step="0.01" id="overallLength" name="overallLength" placeholder="150.00" required aria-required="true">
+                            </div>
+
+                            <button class="btn" type="button" onclick="window.manufacturingApp.logQualityData()">Log Data</button>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- Step 5: Quality Analytics -->
+                <section id="step5" class="step-content" aria-labelledby="step5-title">
+                    <h2 id="step5-title">Quality Analytics</h2>
+                    <p>AI-powered analysis of production data with predictive insights and recommendations.</p>
+
+                    <div class="quality-dashboard">
+                        <div class="chart-container">
+                            <h3>SPC Chart - Bore Diameter</h3>
+                            <canvas id="spcChart" width="400" height="300" role="img" aria-label="Statistical Process Control chart showing bore diameter measurements"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Process Capability</h3>
+                            <canvas id="capabilityChart" width="400" height="300" role="img" aria-label="Process capability histogram"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="ai-insights">
+                        <h3>AI Analysis</h3>
+                        <div class="insight-item">
+                            <h4>Trend Analysis</h4>
+                            <p>Bore diameter measurements showing slight upward drift over last 50 parts. Correlates with tool wear on turning operation.</p>
+                        </div>
+                        <div class="insight-item">
+                            <h4>Root Cause Analysis</h4>
+                            <p>Increased variation in overall length during Shift B. Analysis suggests correlation with coolant temperature fluctuations.</p>
+                        </div>
+                        <div class="insight-item">
+                            <h4>Recommendations</h4>
+                            <p>1. Schedule turning tool replacement within 20 parts<br>
+                            2. Investigate coolant system on VF-3<br>
+                            3. Increase measurement frequency to every 5 parts</p>
+                        </div>
+                    </div>
+
+                    <div class="proposal-section">
+                        <h3>Quality Metrics</h3>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <caption class="sr-only">Quality Metrics Overview</caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Metric</th>
+                                        <th scope="col">Current</th>
+                                        <th scope="col">Target</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Trend</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>First Pass Yield</td>
+                                        <td>96.5%</td>
+                                        <td>&gt;95%</td>
+                                        <td><span class="status-indicator status-good"></span>Good</td>
+                                        <td>↗ Improving</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cpk (Bore)</td>
+                                        <td>1.45</td>
+                                        <td>&gt;1.33</td>
+                                        <td><span class="status-indicator status-good"></span>Good</td>
+                                        <td>→ Stable</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Scrap Rate</td>
+                                        <td>2.1%</td>
+                                        <td>&lt;2%</td>
+                                        <td><span class="status-indicator status-warning"></span>Watch</td>
+                                        <td>↗ Increasing</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Complaints</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td><span class="status-indicator status-good"></span>Excellent</td>
+                                        <td>→ Stable</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="proposal-section">
+                        <h3>Corrective Actions</h3>
+                        <div class="alert alert-warning" role="alert">
+                            <strong>CA-2025-001:</strong> Tool wear compensation needed on ST-30
+                            <br><small>Due: Tomorrow | Assigned: Maintenance</small>
+                        </div>
+                        <div class="alert alert-success" role="status">
+                            <strong>CA-2025-002:</strong> Coolant system calibration completed
+                            <br><small>Completed: Yesterday | Verification: Pending</small>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Loading Indicator -->
+    <div id="loadingIndicator" class="loading-indicator hidden" role="status" aria-live="polite">
+        <div class="spinner"></div>
+        <p>Processing...</p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
