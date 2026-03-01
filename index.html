@@ -1148,6 +1148,265 @@
       .cap-grid { grid-template-columns: 1fr; }
       .showcase-grid { grid-template-columns: 1fr; }
     }
+
+    /* ============================================================
+       HERO LOGO MARK
+    ============================================================ */
+    .hero-logo-mark {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-logo-mark img {
+      width: 100%;
+      height: 100%;
+      animation: logo-glow-pulse 4s ease-in-out infinite;
+      filter: drop-shadow(0 0 18px rgba(99,102,241,0.55));
+    }
+    @keyframes logo-glow-pulse {
+      0%, 100% { filter: drop-shadow(0 0 14px rgba(99,102,241,0.45)); transform: scale(1); }
+      50%       { filter: drop-shadow(0 0 32px rgba(99,102,241,0.80)); transform: scale(1.05); }
+    }
+
+    /* Nav logo image */
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-logo img { width: 26px; height: 26px; flex-shrink: 0; }
+
+    /* ============================================================
+       TICKER RIBBON  (replaces .credibility / .logo-strip)
+    ============================================================ */
+    .ticker-section {
+      background: var(--black);
+      border-top: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
+      overflow: hidden;
+      position: relative;
+      padding-bottom: 8px;
+    }
+    /* Gradient fade edges */
+    .ticker-section::before,
+    .ticker-section::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 160px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .ticker-section::before {
+      left: 0;
+      background: linear-gradient(to right, var(--black) 20%, transparent);
+    }
+    .ticker-section::after {
+      right: 0;
+      background: linear-gradient(to left, var(--black) 20%, transparent);
+    }
+
+    .ticker-label {
+      text-align: center;
+      padding: 36px 40px 22px;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+    }
+
+    .ticker-row {
+      display: flex;
+      overflow: hidden;
+      padding: 6px 0;
+    }
+    .ticker-row:hover .ticker-track { animation-play-state: paused; }
+
+    /* Two ticker-tracks per row; both receive the same animation
+       so the second one seamlessly fills when the first exits.      */
+    .ticker-track {
+      display: flex;
+      flex-shrink: 0;
+      min-width: 100%;
+      animation: ticker-left 28s linear infinite;
+    }
+    .ticker-row.reverse .ticker-track {
+      animation: ticker-right 34s linear infinite;
+    }
+
+    @keyframes ticker-left  { to   { transform: translateX(-100%); } }
+    @keyframes ticker-right { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 0;
+      padding-right: 56px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.38);
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: color 0.25s ease;
+      cursor: default;
+      position: relative;
+    }
+    .ticker-item::after {
+      content: '';
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(99,102,241,0.5);
+    }
+    .ticker-item:hover { color: rgba(255,255,255,0.88); }
+
+    @media (max-width: 768px) {
+      .ticker-section::before,
+      .ticker-section::after { width: 64px; }
+      .ticker-label { padding: 24px 24px 16px; }
+    }
+
+    /* ============================================================
+       CUSTOM AI AGENTS SECTION
+    ============================================================ */
+    .agents {
+      padding: 120px 40px;
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+    .agents::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 55% 60% at 10% 50%, rgba(99,102,241,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 90% 30%, rgba(129,140,248,0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .agents .section-sub { color: rgba(255,255,255,0.5); }
+
+    .agent-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .agent-card {
+      position: relative;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 40px 36px;
+      overflow: hidden;
+      cursor: default;
+      transition: border-color 0.3s ease;
+      transform-style: preserve-3d;
+    }
+    .agent-card:hover { border-color: rgba(99,102,241,0.38); }
+
+    .agent-card-glow {
+      position: absolute;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      filter: blur(20px);
+      top: 50%; left: 50%;
+    }
+    .agent-card:hover .agent-card-glow { opacity: 1; }
+
+    .agent-number {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      color: var(--accent-light);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      opacity: 0.65;
+    }
+    .agent-icon {
+      width: 44px; height: 44px;
+      margin-bottom: 20px;
+      color: var(--accent-light);
+    }
+    .agent-icon svg { width: 100%; height: 100%; }
+    .agent-title {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -0.4px;
+      margin-bottom: 12px;
+    }
+    .agent-desc {
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.72;
+      margin-bottom: 28px;
+    }
+    .agent-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .agent-tag {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.8px;
+      padding: 4px 10px;
+      border: 1px solid var(--glass-border);
+      border-radius: 100px;
+      color: rgba(255,255,255,0.38);
+    }
+
+    .agents-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 36px 40px;
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      background: rgba(99,102,241,0.04);
+      max-width: var(--max-w);
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+    .agents-footer-text h3 {
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: -0.3px;
+      margin-bottom: 6px;
+    }
+    .agents-footer-text p {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.48);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1024px) {
+      .agent-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .agent-grid { grid-template-columns: 1fr; }
+      .agents { padding: 80px 24px; }
+      .agents-footer { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
+    }
   </style>
 </head>
 <body>
@@ -1157,8 +1416,12 @@
   ============================================================ -->
   <nav class="nav" id="mainNav" role="navigation" aria-label="Main">
     <div class="nav-inner">
-      <a href="#" class="nav-logo">Jaque<span>.</span>ai</a>
+      <a href="#" class="nav-logo">
+        <img src="assets/jaque-logo.svg" alt="Jaque.ai logo" width="26" height="26" aria-hidden="true">
+        Jaque<span>.</span>ai
+      </a>
       <div class="nav-links">
+        <a href="#agents" class="nav-link">Services</a>
         <a href="#capabilities" class="nav-link">Capabilities</a>
         <a href="#process" class="nav-link">How It Works</a>
         <a href="#metrics" class="nav-link">Results</a>
@@ -1177,22 +1440,26 @@
     <div class="hero-radial" aria-hidden="true"></div>
 
     <div class="hero-content">
-      <div class="hero-badge reveal" style="transition-delay:0ms">
+      <div class="hero-logo-mark reveal" style="transition-delay:0ms">
+        <img src="assets/jaque-logo.svg" alt="Jaque.ai" width="80" height="80">
+      </div>
+
+      <div class="hero-badge reveal" style="transition-delay:80ms">
         <span class="badge-dot"></span>
         Spatial Intelligence Platform
       </div>
 
       <h1 class="hero-title">
-        <span class="line reveal" style="transition-delay:80ms">Digital Twins for</span>
-        <span class="line reveal" style="transition-delay:180ms">Manufacturing</span>
-        <span class="line accent-line reveal" style="transition-delay:280ms">Operations</span>
+        <span class="line reveal" style="transition-delay:160ms">Digital Twins for</span>
+        <span class="line reveal" style="transition-delay:260ms">Manufacturing</span>
+        <span class="line accent-line reveal" style="transition-delay:360ms">Operations</span>
       </h1>
 
-      <p class="hero-sub reveal" style="transition-delay:380ms">
+      <p class="hero-sub reveal" style="transition-delay:460ms">
         Bring your factory floor to life with real-time spatial intelligence — connecting every machine, process, and workflow to its living digital counterpart.
       </p>
 
-      <div class="hero-cta reveal" style="transition-delay:480ms">
+      <div class="hero-cta reveal" style="transition-delay:560ms">
         <button class="btn-primary magnetic" data-strength="22" onclick="openModal()">
           Get Started <span class="arrow">→</span>
         </button>
@@ -1201,7 +1468,7 @@
         </a>
       </div>
 
-      <div class="hero-tagline reveal" style="transition-delay:580ms">
+      <div class="hero-tagline reveal" style="transition-delay:660ms">
         <span>Model</span>
         <span class="tagline-sep"></span>
         <span>Monitor</span>
@@ -1212,63 +1479,46 @@
   </section>
 
   <!-- ============================================================
-       CREDIBILITY LOGOS
+       TICKER RIBBON — institution names
   ============================================================ -->
-  <section class="credibility" aria-label="Team backgrounds">
-    <p class="credibility-label">Our team comes from</p>
-    <div class="logo-strip">
+  <section class="ticker-section" aria-label="Our team comes from">
+    <p class="ticker-label">Our team comes from</p>
 
-      <!-- Cornell University — academic shield with book -->
-      <div class="logo-item" title="Cornell University">
-        <svg class="logo-mark" viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M100 230c-50-30-84-68-84-120V40l84-28 84 28v70c0 52-34 90-84 120z"/>
-          <path d="M70 90v50l30-15 30 15V90"/>
-          <line x1="100" y1="90" x2="100" y2="125"/>
-        </svg>
-        <span class="logo-name">Cornell</span>
-        <span class="logo-sub">University</span>
+    <!-- Row 1: scrolls left -->
+    <div class="ticker-row" aria-hidden="true">
+      <div class="ticker-track">
+        <span class="ticker-item">Cornell University</span>
+        <span class="ticker-item">University of Toronto</span>
+        <span class="ticker-item">Anthropic</span>
+        <span class="ticker-item">Dell Technologies</span>
+        <span class="ticker-item">Tesla</span>
       </div>
-
-      <!-- University of Toronto — shield with crown -->
-      <div class="logo-item" title="University of Toronto">
-        <svg class="logo-mark" viewBox="0 0 200 260" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M60 50l10-30 15 20 15-20 15 20 15-20 10 30"/>
-          <line x1="60" y1="50" x2="140" y2="50"/>
-          <path d="M50 60h100v90c0 50-50 80-50 80s-50-30-50-80V60z"/>
-          <line x1="100" y1="80" x2="100" y2="180"/>
-          <line x1="75" y1="110" x2="125" y2="110"/>
-        </svg>
-        <span class="logo-name">U of T</span>
-        <span class="logo-sub">University of Toronto</span>
+      <!-- Duplicate for seamless infinite loop -->
+      <div class="ticker-track" aria-hidden="true">
+        <span class="ticker-item">Cornell University</span>
+        <span class="ticker-item">University of Toronto</span>
+        <span class="ticker-item">Anthropic</span>
+        <span class="ticker-item">Dell Technologies</span>
+        <span class="ticker-item">Tesla</span>
       </div>
+    </div>
 
-      <!-- Tesla — iconic T mark -->
-      <div class="logo-item" title="Tesla">
-        <svg class="logo-mark" viewBox="0 0 278 300" fill="currentColor" aria-hidden="true">
-          <path d="M139 274.4L108.7 46.8c22.6-5.4 61.1-5.4 83.7 0L139 274.4z"/>
-          <path d="M139 25.6c46.3 0 89.5 5.4 120.2 14.4 3.8-8.8 7-17.8 9.4-27C230.3 4.2 186.3 0 139 0S47.7 4.2 9.4 13c2.4 9.2 5.6 18.2 9.4 27C49.5 31 92.7 25.6 139 25.6z"/>
-        </svg>
-        <span class="logo-name">Tesla</span>
+    <!-- Row 2: scrolls right -->
+    <div class="ticker-row reverse" aria-hidden="true">
+      <div class="ticker-track">
+        <span class="ticker-item">Tesla</span>
+        <span class="ticker-item">Dell Technologies</span>
+        <span class="ticker-item">Anthropic</span>
+        <span class="ticker-item">University of Toronto</span>
+        <span class="ticker-item">Cornell University</span>
       </div>
-
-      <!-- Anthropic — stylized A -->
-      <div class="logo-item" title="Anthropic">
-        <svg class="logo-mark" viewBox="0 0 200 200" fill="currentColor" aria-hidden="true">
-          <path d="M100 10L180 190H147l-17.5-50h-59L53 190H20L100 10zm-22 110h44L100 58l-22 62z"/>
-        </svg>
-        <span class="logo-name">Anthropic</span>
+      <div class="ticker-track" aria-hidden="true">
+        <span class="ticker-item">Tesla</span>
+        <span class="ticker-item">Dell Technologies</span>
+        <span class="ticker-item">Anthropic</span>
+        <span class="ticker-item">University of Toronto</span>
+        <span class="ticker-item">Cornell University</span>
       </div>
-
-      <!-- Dell Technologies — circle with D -->
-      <div class="logo-item" title="Dell Technologies">
-        <svg class="logo-mark" viewBox="0 0 200 200" fill="currentColor" aria-hidden="true">
-          <path fill-rule="evenodd" d="M100 0C44.8 0 0 44.8 0 100s44.8 100 100 100 100-44.8 100-100S155.2 0 100 0zm0 16c46.4 0 84 37.6 84 84s-37.6 84-84 84-84-37.6-84-84 37.6-84 84-84z"/>
-          <path d="M72 56h24c26.5 0 48 19.7 48 44s-21.5 44-48 44H72V56zm20 18v52h6c16.6 0 26-11.5 26-26s-9.4-26-26-26h-6z"/>
-        </svg>
-        <span class="logo-name">Dell</span>
-        <span class="logo-sub">Technologies</span>
-      </div>
-
     </div>
   </section>
 
@@ -1387,6 +1637,110 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CUSTOM AI AGENTS FOR MANUFACTURING
+  ============================================================ -->
+  <section class="agents" id="agents">
+    <div class="section-center">
+      <div class="section-header">
+        <p class="label reveal">As a Service</p>
+        <h2 class="section-title reveal" style="transition-delay:80ms">Custom AI Agents<br>for Manufacturing</h2>
+        <p class="section-sub reveal" style="transition-delay:160ms">
+          Purpose-built agents that automate complex manufacturing workflows. We handle model fine-tuning, system integration, and continuous improvement — deployed in weeks.
+        </p>
+      </div>
+
+      <div class="agent-grid">
+
+        <!-- Operations Intelligence -->
+        <div class="agent-card tilt-card reveal" data-tilt data-tilt-max="8" style="transition-delay:0ms">
+          <div class="agent-card-glow"></div>
+          <div class="agent-number">01</div>
+          <div class="agent-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="6" y="22" width="9" height="20" rx="1.5"/>
+              <rect x="19.5" y="14" width="9" height="28" rx="1.5"/>
+              <rect x="33" y="6" width="9" height="36" rx="1.5"/>
+              <polyline points="4 18 10 12 18 16 28 6 36 11"/>
+              <circle cx="28" cy="6" r="2" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3 class="agent-title">Operations Intelligence</h3>
+          <p class="agent-desc">AI agents that monitor production lines in real-time, detect anomalies before they escalate, and autonomously trigger corrective actions — keeping your floor at peak OEE.</p>
+          <div class="agent-tags">
+            <span class="agent-tag">OEE Monitoring</span>
+            <span class="agent-tag">Downtime Prevention</span>
+            <span class="agent-tag">Shift Reports</span>
+            <span class="agent-tag">Alert Routing</span>
+          </div>
+        </div>
+
+        <!-- Production Planning -->
+        <div class="agent-card tilt-card reveal" data-tilt data-tilt-max="8" style="transition-delay:100ms">
+          <div class="agent-card-glow"></div>
+          <div class="agent-number">02</div>
+          <div class="agent-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="6" y="8" width="36" height="34" rx="2.5"/>
+              <line x1="6" y1="17" x2="42" y2="17"/>
+              <line x1="16" y1="8" x2="16" y2="17"/>
+              <line x1="32" y1="8" x2="32" y2="17"/>
+              <rect x="11" y="23" width="8" height="6" rx="1"/>
+              <rect x="29" y="23" width="8" height="6" rx="1"/>
+              <rect x="11" y="33" width="8" height="4" rx="1"/>
+              <rect x="20" y="33" width="8" height="4" rx="1"/>
+              <rect x="29" y="33" width="8" height="4" rx="1"/>
+            </svg>
+          </div>
+          <h3 class="agent-title">Production Planning</h3>
+          <p class="agent-desc">Intelligent agents that optimize scheduling, capacity planning, and supply allocation — automatically adapting to demand signals, machine availability, and supplier constraints.</p>
+          <div class="agent-tags">
+            <span class="agent-tag">Scheduling</span>
+            <span class="agent-tag">Capacity Planning</span>
+            <span class="agent-tag">Demand Sensing</span>
+            <span class="agent-tag">MRP</span>
+          </div>
+        </div>
+
+        <!-- ERP Integration -->
+        <div class="agent-card tilt-card reveal" data-tilt data-tilt-max="8" style="transition-delay:200ms">
+          <div class="agent-card-glow"></div>
+          <div class="agent-number">03</div>
+          <div class="agent-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="24" cy="12" rx="16" ry="6"/>
+              <path d="M8 12v10c0 3.3 7.2 6 16 6s16-2.7 16-6V12"/>
+              <path d="M8 22v10c0 3.3 7.2 6 16 6s16-2.7 16-6V22"/>
+              <circle cx="36" cy="36" r="8" fill="rgba(0,0,0,0)"/>
+              <path d="M31 36h10M36 31v10"/>
+            </svg>
+          </div>
+          <h3 class="agent-title">ERP Integration</h3>
+          <p class="agent-desc">Conversational AI agents layered on your existing SAP, Oracle, or Infor ERP — letting your team query, update, and automate workflows in plain language, no tickets required.</p>
+          <div class="agent-tags">
+            <span class="agent-tag">SAP</span>
+            <span class="agent-tag">Oracle</span>
+            <span class="agent-tag">Infor</span>
+            <span class="agent-tag">API-first</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer strip -->
+      <div class="agents-footer reveal" style="transition-delay:280ms">
+        <div class="agents-footer-text">
+          <h3>From requirements to deployed agent in 6 weeks.</h3>
+          <p>We handle model fine-tuning, system integration, and ongoing improvement — you own the IP.</p>
+        </div>
+        <button class="btn-primary magnetic" data-strength="20" onclick="openModal()">
+          Build Your Agent <span class="arrow">→</span>
+        </button>
+      </div>
+
     </div>
   </section>
 
@@ -1534,16 +1888,17 @@
     <div class="footer-inner">
       <div>
         <div class="footer-brand-name">Jaque.ai</div>
-        <div class="footer-brand-tag">Spatial Intelligence for Manufacturing</div>
+        <div class="footer-brand-tag">Spatial Intelligence · Custom AI Agents for Manufacturing</div>
       </div>
       <div class="footer-links">
+        <a href="#agents" class="footer-link">Services</a>
         <a href="#capabilities" class="footer-link">Capabilities</a>
         <a href="#process" class="footer-link">How It Works</a>
         <a href="#metrics" class="footer-link">Results</a>
         <a href="#" class="footer-link" onclick="openModal(); return false;">Contact</a>
       </div>
     </div>
-    <p class="footer-copy">&copy; 2026 Jaque.ai &mdash; Spatial Intelligence for Manufacturing</p>
+    <p class="footer-copy">&copy; 2026 Jaque.ai &mdash; Spatial Intelligence &amp; Custom AI Agents for Manufacturing</p>
   </footer>
 
   <!-- ============================================================
