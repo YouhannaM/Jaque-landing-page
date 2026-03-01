@@ -8,9 +8,6 @@ from .schemas import HealthResponse
 
 settings = get_settings()
 
-# Create database tables
-Base.metadata.create_all(bind=engine)
-
 # Create FastAPI app
 app = FastAPI(
     title=settings.APP_NAME,
@@ -55,9 +52,12 @@ async def health_check():
 @app.on_event("startup")
 async def startup_event():
     """Run on application startup"""
+    try:
+        Base.metadata.create_all(bind=engine)
+    except Exception as e:
+        print(f"Warning: Could not create database tables: {e}")
     print(f"🚀 {settings.APP_NAME} v{settings.VERSION} starting...")
     print(f"📍 Environment: {'Development' if settings.DEBUG else 'Production'}")
-    print(f"🔗 Database: {settings.DATABASE_URL.split('@')[1] if '@' in settings.DATABASE_URL else 'configured'}")
 
 
 @app.on_event("shutdown")
