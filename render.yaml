@@ -1,10 +1,9 @@
 services:
-  # Static landing page
+  # Static landing page — only this service is deployed by Render
   - type: web
     name: jaque-landing-page
     env: static
     staticPublishPath: .
-    buildCommand: ""
     headers:
       - path: /assets/*
         name: Cache-Control
@@ -12,19 +11,3 @@ services:
       - path: /*
         name: Cache-Control
         value: no-cache
-
-  # FastAPI backend (requires DATABASE_URL + REDIS_URL set in Render dashboard)
-  - type: web
-    name: jaque-backend
-    env: docker
-    dockerfilePath: ./Dockerfile
-    plan: free
-    envVars:
-      - key: DATABASE_URL
-        sync: false
-      - key: REDIS_URL
-        sync: false
-      - key: SECRET_KEY
-        generateValue: true
-      - key: DEBUG
-        value: "False"
