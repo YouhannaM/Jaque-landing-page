@@ -417,11 +417,11 @@ document.getElementById('demo-modal').addEventListener('click',function(e){if(e.
 document.getElementById('demo-form').addEventListener('submit',function(e){
 e.preventDefault();
 const fd=new FormData(this);
-const data={name:fd.get('name'),email:fd.get('email'),company:fd.get('company'),_subject:'JaqueAI Demo Request'};
+const email=fd.get('email');
 const msg=document.getElementById('demo-msg');
-if(data.email.includes('gmail')||data.email.includes('yahoo')||data.email.includes('hotmail')||data.email.includes('outlook.com')){msg.textContent='Please use your work email.';msg.style.color='var(--rd)';return}
+if(email.includes('gmail')||email.includes('yahoo')||email.includes('hotmail')||email.includes('outlook.com')){msg.textContent='Please use your work email.';msg.style.color='var(--rd)';return}
 msg.textContent='Submitting...';msg.style.color='var(--wh2)';
-fetch('https://formspree.io/f/YOUR_FORMSPREE_ID',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
+fetch('https://formsubmit.co/ajax/youhanna@jaque-ai.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({name:fd.get('name'),email:email,company:fd.get('company'),_cc:'emanuel@jaque-ai.com',_subject:'JaqueAI Demo Request',_replyto:email})})
 .then(r=>{if(r.ok){msg.textContent='Demo requested. We will be in touch within 24 hours.';msg.style.color='var(--gn)';this.reset()}else{msg.textContent='Something went wrong. Email demo@jaque-ai.com directly.';msg.style.color='var(--rd)'}})
 .catch(()=>{msg.textContent='Network error. Email demo@jaque-ai.com directly.';msg.style.color='var(--rd)'})});
 document.getElementById('gate-btn').addEventListener('click',function(){
@@ -429,9 +429,9 @@ const email=document.getElementById('gate-email').value;const msg=document.getEl
 if(!email||!email.includes('@')){msg.textContent='Please enter a valid email.';msg.style.color='var(--rd)';return}
 if(email.includes('gmail')||email.includes('yahoo')||email.includes('hotmail')){msg.textContent='Please enter a valid work email.';msg.style.color='var(--rd)';return}
 msg.textContent='Verifying...';msg.style.color='var(--wh2)';
-fetch('https://formspree.io/f/YOUR_FORMSPREE_ID',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({email:email,_subject:'JaqueAI Calculator Access'})})
-.then(r=>{const cb=document.getElementById('calc-tab-btn');cb.style.opacity='1';cb.style.pointerEvents='auto';msg.textContent='Access granted. Opening calculator...';msg.style.color='var(--gn)';setTimeout(()=>cb.click(),800)})
-.catch(()=>{const cb=document.getElementById('calc-tab-btn');cb.style.opacity='1';cb.style.pointerEvents='auto';msg.textContent='Access granted. Opening calculator...';msg.style.color='var(--gn)';setTimeout(()=>cb.click(),800)})});
+const unlockCalc=()=>{const cb=document.getElementById('calc-tab-btn');cb.style.opacity='1';cb.style.pointerEvents='auto';msg.textContent='Access granted. Opening calculator...';msg.style.color='var(--gn)';setTimeout(()=>cb.click(),800)};
+fetch('https://formsubmit.co/ajax/youhanna@jaque-ai.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({email:email,_cc:'emanuel@jaque-ai.com',_subject:'JaqueAI Calculator Access',_replyto:email})})
+.then(()=>unlockCalc()).catch(()=>unlockCalc())});
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})}));
 function calc(){
 const l=+document.getElementById('c-lines').value,r=+document.getElementById('c-rev').value,la=+document.getElementById('c-lau').value,au=+document.getElementById('c-aud').value;
