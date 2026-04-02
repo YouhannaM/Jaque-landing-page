@@ -1,0 +1,33 @@
+{
+  "name": "jaque-manufacturing-platform",
+  "version": "1.0.0",
+  "description": "Jaque.ai Manufacturing Operations Platform - AI-powered quality control, production monitoring, and analytics",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "python3 -m http.server 8000",
+    "lint": "echo 'Linting not configured yet'",
+    "test": "echo 'Tests not configured yet'"
+  },
+  "keywords": [
+    "manufacturing",
+    "quality-control",
+    "CAD-analysis",
+    "production-monitoring",
+    "AI-analytics",
+    "SPC",
+    "manufacturing-operations"
+  ],
+  "author": "Jaque.ai",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YouhannaM/Jaque-landing-page.git"
+  },
+  "bugs": {
+    "url": "https://github.com/YouhannaM/Jaque-landing-page/issues"
+  },
+  "homepage": "https://github.com/YouhannaM/Jaque-landing-page#readme",
+  "devDependencies": {},
+  "dependencies": {}
+}
